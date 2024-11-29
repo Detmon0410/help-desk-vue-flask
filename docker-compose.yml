@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: ./Backend/ticket_api
+    container_name: helpdesk-backend
+    ports:
+      - "5000:5000"   
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+
+  frontend:
+    depends_on:
+    - backend
+    build:
+      context: ./Frontend/ticket-page
+    container_name: helpdesk-frontend
+    ports:
+      - "8080:8080"
